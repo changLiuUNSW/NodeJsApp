@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Task Approval</h3>
+    </div>
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                CultureCode
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Count
+            </th>
+        </tr>
+
+        <% _.each(results, function(obj) { %>
+        <tr>
+            <td>
+                <%=obj.cultureName %>
+            </td>
+            <td>
+                <%=obj.category %>
+            </td>
+            <td>
+                <a href='/taskapproval/processnow/<%=obj.cultureId %>'>
+                    <%=obj.count %>
+                </a>
+            </td>
+        </tr>
+        <% }); %>
+    </table>
+</div>

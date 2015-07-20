@@ -1,0 +1,37 @@
+<h1 class="sub-header">Roles</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped dataTable" id="MemberTable">
+        <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                DateCreated
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+        if(typeof roles != 'undefined') {
+        for(var i=0; i<roles.length; i++) { %>
+        <tr>
+            <td>
+                <%=roles[i].adminRoleId %>
+            </td>
+            <td>
+                <%=roles[i].name %>
+            </td>
+            <td>
+                <%=Format_Date_Full(roles[i].dateCreated) %>
+            </td>
+        </tr>
+        <% }
+        }%>
+        </tbody>
+    </table>
+</div>

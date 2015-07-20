@@ -1,0 +1,117 @@
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Welcome back,<%=user.username%></title>
+    <link rel='stylesheet' href='/css/style.css' type="text/css"/>
+    <link rel='stylesheet' href='/css/bootstrap.min.css' type="text/css" />
+    <link href="/css/sticky-footer-navbar.css" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href='/css/jquery.dataTables.min.css' type="text/css" />
+    <link rel='stylesheet' href='/css/jquery.dataTables_themeroller.css' type="text/css" />
+    <script src="/js/jquery.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="/js/main.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/home"><%=user.username %></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav  navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/password">Update password</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/users">Users</a></li>
+                        <li><a href="/role">Roles</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Approval <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/taskapproval">Task Approval</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown">Member <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/member">Member</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Task <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Task">Task</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Translation <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/translation">Translation</a></li>
+                        <li><a href="/translationcategory">Translation Category</a></li>
+                        <li><a href="/translationtemplate">Translation Template</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+
+    <div class="flashMessages">
+        <div style="position:absolute;right:50px;z-index:999;margin-top:5px;">
+        <%  var html = "";
+            ['error', 'info', 'success'].forEach(function(type) {
+                if(flash[type]) {
+                    flash[type].forEach(function(message) {
+                        html += "<div class='flash " + type + "'>" + message + "</div>";
+                    });
+                }
+            });
+            print(html);
+        %>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 main">
+            <%= content%>
+        </div>
+    </div>
+</div>
+
+
+<div class="footer">
+    <div class="container">
+        <p class="text-muted"> &copy; Logged in as:
+            <%=user.username %>| Environment: development</p>
+    </div>
+</div>
+
+</body>
+
+</html>

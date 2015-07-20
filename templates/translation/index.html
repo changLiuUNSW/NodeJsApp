@@ -1,0 +1,102 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Translation</h3>
+    </div>
+    <div class="panel-body">
+        <a href='/translation/add?templateId=<%=templateSelectId%>' class="pull-left">
+            <button type="button" class="btn btn-default">New Translation</button>
+        </a>
+        <form action="/translation" method="post">
+            <div class="pull-right  col-lg-3 form-horizontal">
+            	<div class="form-group">
+	            	<label class="control-label col-lg-2">Template:</label>
+	            	<div class="col-lg-10">
+						<select name="templateSelectId" onchange="this.form.submit();" id="templateSelectId" class="form-control">
+						    <option value="" disabled>Template (Pending count)</option>
+						    <% _.each(templates, function(current) { %>
+						    	<optgroup label="<%=current[0].categoryName%>">
+
+						    	<% _.each(current, function(obj) { %>
+						    		<option value="<%=obj.translationTemplateId%>"
+						    			<% if(obj.translationTemplateId == templateSelectId) { %>
+						    				selected
+						    			<% } %>
+						    			<% if(obj.pendingCount > 0) { %>
+						    				style='color:red;'
+						    			<% } %>
+						    			>
+						    			<%=obj.templateName %> - <%=obj.pendingCount%>/<%=obj.total%>
+
+						    		</option>
+						    	<% }); %>
+						    	</optgroup>
+						    <%	}); %>
+
+						</select>
+					</div>
+
+					<div style="clear:both;"></div>
+				</div>
+            </div>
+            <div class="pull-right  col-lg-3 form-horizontal form-group">
+            	<label class="control-label col-lg-3">Language:</label>
+            	<div class="col-lg-6">
+	                <%- Selection_Tag({
+	                    name: "cultureSelectId",
+	                    options: cultures,
+	                    valueField: "cultureId",
+	                    textField: "name",
+	                    selected: cultureSelectId,
+	                    onChangeSubmit: true,
+	                    class: 'form-control'
+	                }) %>
+            	</div>
+            </div>
+            <div style="clear:both;"></div>
+        </form>
+
+    </div>
+
+ 	<div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Content
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if(_.isEmpty(translations)) { %>
+                <tr>
+                    <td colspan='2'>
+                        Translation is empty, please select a template!
+                    </td>
+                <tr>
+            <% } else { %>
+                <% _.each(translations, function(translation) { %>
+                    <tr>
+                        <td>
+                            <a href='translation/edit/<%= translation.translationId %>'>
+                                <%=translation.translationId %>
+                            </a>
+                        </td>
+                        <td>
+                            <%=translation.name %>
+                        </td>
+                        <td>
+                            <%=translation.content %>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>

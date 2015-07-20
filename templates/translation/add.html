@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">New Translation</h3>
+
+    </div>
+
+
+
+<% if(error) { %>
+    <%=error%>
+<% }%>
+    <form action="/translation/create" method="post">
+        <table class="table">
+            <tr>
+                <td>
+
+                    Template
+                </td>
+                <td>
+                    <%- Selection_Tag({
+                        name: "templateId",
+                        options: templates,
+                        valueField: "translationTemplateId",
+                        textField: "name",
+                        selected: templateId,
+                        class: 'form-control'
+                    }) %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    name/key
+                </td>
+                <td>
+                    <input type="text" name="key" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Create Translation">
+                    <input type="button"value="Cancel" onClick="javascript:location.href=/translation/">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

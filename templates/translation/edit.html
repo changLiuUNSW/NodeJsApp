@@ -1,0 +1,24 @@
+<div class="heading">
+    Translation:
+</div>
+<br />
+
+<form action="/translationcategory/update" method="post">
+<input type="hidden" name="translationCategoryId" value="<%=category.translationCategoryId%>">
+<table class="table">
+    <tr>
+    	<td>
+    		Translation
+    	</td>
+    	<td>
+    		<input type="text" name="categoryName" value="<%=category.name%>">
+    	</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="submit"  value="Update">
+            <input type="button" value="Cancel" onClick="javascript:history.go(-1)">
+        </td>
+    </tr>
+</table>
+<form>

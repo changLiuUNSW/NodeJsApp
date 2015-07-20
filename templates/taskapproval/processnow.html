@@ -1,0 +1,315 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Task approval process</h3>
+    </div>
+    <div class="panel-body">
+        <a href="#" class="pull-left" onclick="history.go(-1);return false">
+            <button type="button" class="btn btn-default">Previous task</button>
+        </a>
+
+    </div>
+
+    <br />
+    <% if(error) { %>
+        <%=error%>
+    <% } %>
+    <div  class="table-responsive">
+    <form action="/taskdata/processnow/<%=data.cultureId %>" method="post">
+        <input type="hidden" name="taskdataId" value="<%=data.taskdataId%>">
+        <input type="hidden" name="approveStatus" value="" id="approveStatus" />
+        <table class="table table-striped">
+            <tr>
+                <td>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>
+                                TaskID:
+                            </td>
+                            <td>
+                                <%=data.taskId%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Culture:
+                            </td>
+                            <td>
+                                <%=data.cultureName %>
+                            </td>
+                        <tr>
+                            <td>
+                                DateCreated:
+                            </td>
+                            <td>
+                                <%=Format_Date_Full(data.dateCreated) %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                TaskStatus:
+                            </td>
+
+                            <td>
+                                <% if(taskDetail.taskStatusId == 1) { %>
+                                    Approved
+                                <% } else if(taskDetail.taskStatusId == 2) { %>
+                                    Pending
+                                <% } else if(taskDetail.taskStatusId == 3) { %>
+                                    Suspended
+                                <% } else if(taskDetail.taskStatusId ==4) { %>
+                                    Deleted
+                                <% }%>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Title:
+                            </td>
+                            <td>
+                                <%=taskDetail.title %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Detail:
+                            </td>
+                            <td>
+                                <%=taskDetail.detail %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Channel:
+                            </td>
+                            <td>
+                                <%=taskDetail.taskChannelId %> - <%= channel.name %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Category:
+                            </td>
+                            <td>
+                                <%=taskDetail.taskCategoryId %> - <%= category.name %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Amount:
+                            </td>
+                            <td>
+                                <%=taskDetail.code %> <%=taskDetail.symbol %><%=taskDetail.amount %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Online only:
+                            </td>
+                            <td>
+                                <%=taskDetail.onlineOnly %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Deadline:
+                            </td>
+                            <td>
+                                <%=Format_Date_Full(taskDetail.deadline) %>
+                            </td>
+                        </tr>
+                        <% if(taskDetail.address) { %>
+                            <tr>
+                                <td>
+                                    Address:
+                                </td>
+                                <td>
+                                    <%=taskDetail.address %>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </table>
+
+                </td>
+                <td>
+                    <table class="table table-bordered small">
+                        <tr>
+                            <td>
+                                MemberID:
+                            </td>
+                            <td>
+                                <%=memberDetail.memberId %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Username:
+                            </td>
+                            <td>
+                                <%=memberDetail.username %>
+                                <% if(memberDetail.underReview) { %>
+
+                                    <span class="label-warning">(under review)</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                       <tr>
+                            <td>
+                                Gender:
+                            </td>
+                            <td>
+                                <% if(memberDetail.genderTypeId === 1) { %>
+                                    Female
+                                <% } else { %>
+                                    Male
+                                <% } %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Location:
+                            </td>
+                            <td>
+                                <%=memberDetail.placeName %>, <%=memberDetail.regionName %>, <%=memberDetail.countryName %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Age:
+                            </td>
+                            <td>
+                                <%=memberDetail.age %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                EmailAddress:
+                            </td>
+                            <td>
+                                <%=data.emailAddress %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Chat Status:
+                            </td>
+                            <td>
+                                <%=memberDetail.chatStatus %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Introduction:
+                            </td>
+                            <td>
+                                <%=memberDetail.introduction %>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Quotation:
+                            </td>
+                            <td>
+                                <%=memberDetail.quotation %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Hidden:
+                            </td>
+                            <td>
+                                <%=memberDetail.hidden %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Disabled:
+                            </td>
+                            <td>
+                                <%=memberDetail.disabled %>
+                            </td>
+                        </tr>
+                    </table>
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+
+                    <button type="button" class="btn btn-success" id="approveTask">approve</button>
+                    <button type="button" class="btn btn-warning" id="escalateTask">escalate</button>
+                    <button type="button" class="btn btn-danger" id="rejectTask">reject</button>
+
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="rejectBlock" style="display:none;color:##444444;cursor:pointer;">
+                        Reject Reason
+                        <br/>
+                        <%- Selection_Tag({
+                        name: "rejectReason",
+                        options: rejectReason,
+                        valueField: "rejectReasonId",
+                        textField: "name",
+                        selected: 1,
+                        class: 'form-control'
+                    }) %>
+                    </div>
+                </td>
+            </tr>
+            <tr class="invisible taskProcess">
+                <td>
+                    <button type="button" class="btn btn-primary" id="processTask">Process now</button>
+
+                </td>
+            </tr>
+        </table>
+    <form>
+    </div>
+</div>
+
+<script language="javascript">
+
+$('#rejectTask').on('click', function() {
+    action('reject');
+
+});
+
+$('#escalateTask').on('click', function() {
+    action('escalate');
+
+});
+
+$('#approveTask').on('click', function() {
+    action('approve');
+
+});
+
+$('#processTask').on('click', function() {
+    $('#approveTask').addClass('disabled');
+    $('#escalateTask').addClass('disabled');
+    $('#rejectTask').addClass('disabled');
+    $(this).closest("form").submit();
+});
+function action(status) {
+    $('#approveStatus').attr("value", "status");
+
+    if (status == "approve") {
+        $('#rejectBlock').hide();
+    } else if(status == 'reject') {
+        $('#rejectBlock').show();
+        $("#rejectReason").focus();
+
+    } else if(status == 'escalate') {
+        $('#rejectBlock').hide();
+    }
+    $('.taskProcess').removeClass('invisible');
+
+};
+
+
+
+</script>

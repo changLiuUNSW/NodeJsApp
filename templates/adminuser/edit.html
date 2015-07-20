@@ -1,0 +1,58 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Admin User list</h3>
+    </div>
+
+
+    <form action="/users/<%=user.adminUserId%>" method="post">
+        <input type="hidden" name="roleId" value="<%=user.adminUserId%>">
+        <table class="table">
+
+            <tr>
+                <td style="width:300px;">
+                    Email Address
+                </td>
+                <td>
+                    <input type="text" name="roleName" value="<%=user.emailAddress%>">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Roles
+                </td>
+                <td>
+                    <table>
+                        <th>
+
+                        </th>
+                        <th>
+                            role name
+                        </th>
+
+                        <% for(var i=0; i<roles.length; i++) { %>
+                            <tr>
+                                <td>
+                                    <% if(roles[i].adminUserId == user.adminUserId) { %>
+                                        <input type="checkbox" value="roleId-<%=roles[i].adminRoleId%>" checked>
+                                    <% } else { %>
+                                        <input type="checkbox" value="roleId-<%=roles[i].adminRoleId%>">
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <%=roles[i].name %>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Update">
+                    <input type="button" value="Cancel" onClick="javascript:history.go(-1)">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

@@ -1,0 +1,51 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Edit Template</h3>
+    </div>
+    <div class="panel-body">
+        <a href='/translationtemplate' class="pull-left">
+            <button type="button" class="btn btn-default">Back</button>
+        </a>
+
+    </div>
+
+    <br />
+    <% if(error) { %>
+        <%=error%>
+    <% } %>
+    <form action="/translationtemplate/update" method="post">
+        <input type="hidden" name="translationTemplateId" value="<%=data.translationTemplateId%>">
+        <table class="table table-striped">
+            <tr>
+                <td>
+                    Select Category
+                </td>
+                <td>
+                    <%- Selection_Tag({
+                        name: "category",
+                        options: categories,
+                        valueField: "translationCategoryId",
+                        textField: "name",
+                        selected: data.translationCategoryId,
+                        class: 'form-control'
+                    }) %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Template
+                </td>
+                <td>
+                    <input type="text" name="templateName" value="<%=data.name%>">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Update">
+                    <input type="button" value="Cancel" onClick="javascript:history.go(-1)">
+                </td>
+            </tr>
+        </table>
+    <form>
+
+</div>

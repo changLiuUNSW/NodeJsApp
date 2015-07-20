@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">New Role</h3>
+    </div>
+
+
+
+<% if(typeof error != 'undefined') {%>
+    <%=error%>
+<% } %>
+    <form action="/role/create" method="post">
+        <table class="table">
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    <input type="text" name="role">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Create Role">
+                    <input type="button"value="Cancel" onClick="javascript:history.go(-1)">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

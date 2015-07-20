@@ -1,0 +1,48 @@
+<h1 class="sub-header">Admin User list</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped dataTable">
+        <thead>
+        <tr>
+            <th>
+                User ID
+            </th>
+            <th>
+                Username
+            </th>
+            <th>
+                Email Address
+            </th>
+            <th>
+                Date Created
+            </th>
+            <th>
+                Last Login Date
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for(var i=0; i<users.length; i++) { %>
+        <tr>
+            <td>
+                <a href='users/<%= users[i].adminUserId %>'>
+                    <%=users[i].adminUserId %>
+                </a>
+            </td>
+            <td>
+                <%=users[i].username %>
+            </td>
+            <td>
+                <%=users[i].emailAddress %>
+            </td>
+            <td>
+                <%- Format_Date_Full(users[i].dateCreated) %>
+            </td>
+            <td>
+                <%=Format_Date_Full(users[i].lastLogin) %>
+            </td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>

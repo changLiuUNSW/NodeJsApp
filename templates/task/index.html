@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Task list</h3>
+    </div>
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                Member ID
+            </th>
+            <th>
+                User Name
+            </th>
+            <th>
+                Email Address
+            </th>
+            <th>
+                Last Logout Date
+            </th>
+        </tr>
+
+        <% for(var i=0; i<members.length; i++) { %>
+        <tr>
+            <td>
+                <a href='member/detail/<%= members[i].memberId %>'>
+                    <%=members[i].memberId %>
+                </a>
+            </td>
+            <td>
+                <%=members[i].userName %>
+            </td>
+            <td>
+                <%=members[i].emailAddress %>
+            </td>
+            <td>
+                <%=Format_Date_Full(members[i].LastLogoutDate) %>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+</div>
